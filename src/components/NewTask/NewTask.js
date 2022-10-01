@@ -15,7 +15,7 @@ const NewTask = (props) => {
   const enterTaskHandler = async (taskText) => {
     sendTaskRequest(
       {
-        url: 'https://react-http-6b4a6.firebaseio.com/tasks.json',
+        url: 'https://udemy-reactjs-f0115-default-rtdb.asia-southeast1.firebasedatabase.app/tasks/-NDHOpblLe5EZYcygQid/tasks.json',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
