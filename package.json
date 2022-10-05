@@ -1,0 +1,11 @@
+{
+  "name": "udemy-reactjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/RavenRidge98/udemy-reactjs.git",
+  "author": "Aldorino Adhisasmita Yandoyo <55988714+RavenRidge98@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^4.2.0"
+  }
+}
