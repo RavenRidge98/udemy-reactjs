@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import classes from './NoQuotesFound.module.css';
+import classes from "./NoQuotesFound.module.css";
 
 const NoQuotesFound = () => {
   return (

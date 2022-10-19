@@ -1,9 +1,9 @@
-import { Fragment, useRef, useState } from 'react';
-import { Prompt } from 'react-router-dom';
+import { Fragment, useRef, useState } from "react";
+import { Prompt } from "react-router-dom";
 
-import Card from '../UI/Card';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import classes from './QuoteForm.module.css';
+import Card from "../UI/Card";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
@@ -35,7 +35,7 @@ const QuoteForm = (props) => {
       <Prompt
         when={isEntering}
         message={(location) =>
-          'Are you sure you want to leave? All your entered data will be lost!'
+          "Are you sure you want to leave? All your entered data will be lost!"
         }
       />
       <Card>
@@ -59,7 +59,9 @@ const QuoteForm = (props) => {
             <textarea id='text' rows='5' ref={textInputRef}></textarea>
           </div>
           <div className={classes.actions}>
-            <button onClick={finishEnteringHandler} className='btn'>Add Quote</button>
+            <button onClick={finishEnteringHandler} className='btn'>
+              Add Quote
+            </button>
           </div>
         </form>
       </Card>

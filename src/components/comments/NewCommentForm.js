@@ -1,9 +1,9 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
-import useHttp from '../../hooks/use-http';
-import { addComment } from '../../lib/api';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import classes from './NewCommentForm.module.css';
+import useHttp from "../../hooks/use-http";
+import { addComment } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import classes from "./NewCommentForm.module.css";
 
 const NewCommentForm = (props) => {
   const commentTextRef = useRef();
@@ -13,7 +13,7 @@ const NewCommentForm = (props) => {
   const { onAddedComment } = props;
 
   useEffect(() => {
-    if (status === 'completed' && !error) {
+    if (status === "completed" && !error) {
       onAddedComment();
     }
   }, [status, error, onAddedComment]);
@@ -30,7 +30,7 @@ const NewCommentForm = (props) => {
 
   return (
     <form className={classes.form} onSubmit={submitFormHandler}>
-      {status === 'pending' && (
+      {status === "pending" && (
         <div className='centered'>
           <LoadingSpinner />
         </div>
