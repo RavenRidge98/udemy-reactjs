@@ -1,23 +1,43 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import AuthContext from "../store/auth-context";
 
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
+  const history = useHistory();
+  const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
+
+  const logoutHandler = () => {
+    authCtx.logout();
+    history.replace("./auth");
+    //redirect
+  };
+
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>Great Quotes</div>
-      <nav className={classes.nav}>
+      <Link to='/'>
+        <div className={classes.logo}>React Auth</div>
+      </Link>
+      <nav>
         <ul>
-          <li>
-            <NavLink to='/quotes' activeClassName={classes.active}>
-              All Quotes
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/new-quote' activeClassName={classes.active}>
-              Add a Quote
-            </NavLink>
-          </li>
+          {!isLoggedIn && (
+            <li>
+              <Link to='/auth'>Login</Link>
+            </li>
+          )}
+          {isLoggedIn && (
+            <>
+              <li>
+                <Link to='/profile'>Profile</Link>
+              </li>
+              <li>
+                <button onClick={logoutHandler}>Logout</button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>

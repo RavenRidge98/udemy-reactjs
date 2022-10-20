@@ -1,46 +1,33 @@
-import { Route, Switch, Redirect } from "react-router-dom";
+import { useContext } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import React, { Suspense } from "react";
-
-// import AllQuotes from "./pages/AllQuotes";
-// import QuoteDetail from "./pages/QuoteDetail";
-// import NotFound from "./pages/NotFound";
-import Layout from "./components/layout/Layout";
-import LoadingSpinner from "./components/UI/LoadingSpinner";
-
-const NewQuote = React.lazy(() => import("./pages/NewQuote"));
-const QuoteDetail = React.lazy(() => import("./pages/QuoteDetail"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
-const AllQuotes = React.lazy(() => import("./pages/AllQuotes"));
+import Layout from "./components/Layout/Layout";
+import UserProfile from "./components/Profile/UserProfile";
+import AuthContext from "./components/store/auth-context";
+import AuthPage from "./pages/AuthPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
+  const authCtx = useContext(AuthContext);
   return (
     <Layout>
-      <Suspense
-        fallback={
-          <div className='centered'>
-            <LoadingSpinner />
-          </div>
-        }
-      >
-        <Switch>
-          <Route path='/' exact>
-            <Redirect to='/quotes' />
+      <Switch>
+        <Route path='/' exact>
+          <HomePage />
+        </Route>
+        {!authCtx.isLoggedIn && (
+          <Route path='/auth'>
+            <AuthPage />
           </Route>
-          <Route path='/quotes' exact>
-            <AllQuotes />
-          </Route>
-          <Route path='/quotes/:quoteId'>
-            <QuoteDetail />
-          </Route>
-          <Route path='/new-quote'>
-            <NewQuote />
-          </Route>
-          <Route path='*'>
-            <NotFound />
-          </Route>
-        </Switch>
-      </Suspense>
+        )}
+        <Route path='/profile'>
+          {authCtx.isLoggedIn && <UserProfile />}
+          {!authCtx.isLoggedIn && <Redirect to='/auth' />}
+        </Route>
+        <Route path='*'>
+          <Redirect to='/' />
+        </Route>
+      </Switch>
     </Layout>
   );
 }
