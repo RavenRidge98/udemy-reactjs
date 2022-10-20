@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Layout from "./components/Layout/Layout";
+import Layout from "./components/layout/Layout";
 import UserProfile from "./components/Profile/UserProfile";
 import AuthContext from "./components/store/auth-context";
 import AuthPage from "./pages/AuthPage";
